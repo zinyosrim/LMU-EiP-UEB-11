@@ -1,5 +1,5 @@
 /**
- * Created by ZY on 13.01.17.
+ * Class Musiker erstellt Musiker
  *
  */
 public class Musiker {
@@ -9,32 +9,29 @@ public class Musiker {
     // Instanzvariable für die Anzahl der erstellten Musiker
     private static int instanceCounter=0;
 
+    // Konstruktor
     private Musiker(String name){
-    // String className = new Exception().getStackTrace()[1].getClassName();
             this.name = name;
-            instanceCounter++;
     }
 
     public String toString(){
-        return this.name;
+        return "Musiker "+this.name;
     }
 
+    /**
+     * erstellt Musiker.
+     * 
+     * @param   name
+     * @return  Musiker
+     * @throws  Exception   Sofern aufrufende Klasse = Quartett ist und mehr 4 Musiker erstellt werden sollen
+     */
     public static Musiker erstelleMusiker(String name) throws Exception {
-        Musiker m = new Musiker(name);
-        try {
-            if (instanceCounter > 4)
-            {
-                throw new Exception();
-            }
-            else {
-                System.out.println("counter = "+instanceCounter);
-                return m;
 
+            String className = new Exception().getStackTrace()[1].getClassName();
+            if ( (instanceCounter >= 4) && (className == "Quartett") ) {
+                throw new Exception("Quartett kann nicht mehr als 4 Personen haben!");
             }
-        } catch (Exception e) {
-            System.out.println("Can’t have more than 4 instances");
-        }
-    return m;
-
+            instanceCounter++;
+            return new Musiker(name);
     }
 }
