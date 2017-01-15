@@ -20,7 +20,7 @@ public class Musiker {
 
     /**
      * erstellt Musiker.
-     * 
+     *
      * @param   name
      * @return  Musiker
      * @throws  Exception   Sofern aufrufende Klasse = Quartett ist und mehr 4 Musiker erstellt werden sollen

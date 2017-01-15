@@ -1,0 +1,86 @@
+Kampfaufstellung:
+-----------------
+Zwerg(20)
+Ork(20)
+Zwerg(20)
+Mensch(20)
+Zwerg(20)
+Ork(20)
+Mensch(20)
+Schaf(20)
+Schaf(20)
+Schaf(20)
+-----------------
+
+Der Kampf beginnt!
+Zwerg(20) greift Ork(20) an.
+Ork(18) greift Zwerg(20) an.
+Zwerg(19) greift Ork(20) an.
+Mensch(20) greift Ork(18) an.
+Zwerg(20) greift Ork(16) an.
+Ork(14) greift Mensch(20) an.
+Mensch(19) greift Schaf(20) an.
+Ein Schaf versucht zu fliehen!
+Zwerg(20) greift Ork(18) an.
+Ork(16) greift Zwerg(19) an.
+Zwerg(18) greift Ork(14) an.
+Mensch(20) greift Ork(12) an.
+Zwerg(20) greift Ork(10) an.
+Ork(8) greift Mensch(19) an.
+Mensch(18) greift Schaf(16) an.
+Ein Schaf versucht zu fliehen!
+Zwerg(20) greift Ork(16) an.
+Ork(14) greift Zwerg(18) an.
+Zwerg(17) greift Ork(8) an.
+Mensch(20) greift Ork(6) an.
+Zwerg(20) greift Ork(4) an.
+Ork(2) greift Mensch(18) an.
+Mensch(17) greift Schaf(12) an.
+Ein Schaf versucht zu fliehen!
+Zwerg(20) greift Ork(14) an.
+Ork(12) greift Zwerg(17) an.
+Zwerg(16) greift Ork(2) an.
+Mensch(20) greift Schaf(8) an.
+Ein Schaf versucht zu fliehen!
+Zwerg(20) greift Schaf(4) an.
+Ein Schaf fiel den Horden zum Opfer!
+Mensch(17) greift Schaf(20) an.
+Ein Schaf versucht zu fliehen!
+Zwerg(20) greift Ork(12) an.
+Ork(10) greift Zwerg(16) an.
+Zwerg(15) greift Schaf(16) an.
+Ein Schaf versucht zu fliehen!
+Mensch(20) greift Schaf(12) an.
+Ein Schaf versucht zu fliehen!
+Zwerg(20) greift Schaf(8) an.
+Ein Schaf versucht zu fliehen!
+Mensch(17) greift Schaf(4) an.
+Ein Schaf fiel den Horden zum Opfer!
+Zwerg(20) greift Ork(10) an.
+Ork(8) greift Zwerg(15) an.
+Zwerg(14) greift Schaf(20) an.
+Ein Schaf versucht zu fliehen!
+Mensch(20) greift Schaf(16) an.
+Ein Schaf versucht zu fliehen!
+Zwerg(20) greift Schaf(12) an.
+Ein Schaf versucht zu fliehen!
+Mensch(17) greift Schaf(8) an.
+Ein Schaf versucht zu fliehen!
+Zwerg(20) greift Ork(8) an.
+Ork(6) greift Zwerg(14) an.
+Zwerg(13) greift Schaf(4) an.
+Ein Schaf fiel den Horden zum Opfer!
+Mensch(20) greift Ork(6) an.
+Zwerg(20) greift Ork(4) an.
+Mensch(17) greift Ork(2) an.
+Zwerg(20) beendet das Gefecht mit einem letzten beherzten Schlag!
+
+
+Verbleibende Kaempfer:
+-----------------
+Zwerg(20)
+Zwerg(13)
+Mensch(20)
+Zwerg(20)
+Mensch(17)
+-----------------
