@@ -14,10 +14,8 @@ public class Schaf extends Einheit {
         }
 
         finally{
-            int verbleibendeLebenspunkte = this.lebensPunkte-(int)(zielSchadensKorrekturFaktor*schaden);
-            if (verbleibendeLebenspunkte <= 0){
-                this.lebensPunkte = 0;
-            }
+            int verbleibendeLebenspunkte = this.lebensPunkte-(schaden);
+            if (verbleibendeLebenspunkte <= 0) this.lebensPunkte = 0;
             this.lebensPunkte = verbleibendeLebenspunkte;
         }
     }

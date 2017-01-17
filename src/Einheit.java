@@ -7,18 +7,14 @@ abstract class Einheit implements Comparable<Einheit> {
 
     // Attribute
 
-    protected final int     MAX_LEBENSPUNKTE = 20;
-    protected       int     angriffsSchadensKorrektur = 0;
-    protected       double  zielSchadensKorrekturFaktor = 1.;
-    protected       int     initiative;
-    public          int     lebensPunkte = MAX_LEBENSPUNKTE;
+    protected int initiative;
+    protected int lebensPunkte = 20;
+    //public          int     lebensPunkte = MAX_LEBENSPUNKTE;
 
     // Konstruktor
 
     public Einheit(){
         this.lebensPunkte = lebensPunkte;
-        this.angriffsSchadensKorrektur = angriffsSchadensKorrektur;
-        this.zielSchadensKorrekturFaktor = zielSchadensKorrekturFaktor;
         this.initiative = new Random().nextInt(101);
     }
 
@@ -42,12 +38,55 @@ abstract class Einheit implements Comparable<Einheit> {
      * @param   ziel
      * @return  boolean
      */
-    public boolean kannAngreifen ( Einheit ziel ){
-        return false;
+    public boolean kannAngreifen ( Einheit ziel ) {
+
+        boolean angriff = false;
+        String zielInstance = ziel.getClass().getSimpleName();
+
+        if (this instanceof Schaf) angriff = false;
+
+        if (this instanceof Ork || this instanceof Goblin) {
+            switch (zielInstance) {
+                case "Ork":
+                    angriff = false;
+                    break;
+                case "Goblin":
+                    angriff = false;
+                    break;
+                case "Schaf":
+                    angriff = true;
+                    break;
+                case "Mensch":
+                    angriff = true;
+                    break;
+                case "Zwerg":
+                    angriff = true;
+            }
+        }
+
+        if (this instanceof Mensch || this instanceof Zwerg) {
+            switch (zielInstance) {
+                case "Ork":
+                    angriff = true;
+                    break;
+                case "Goblin":
+                    angriff = true;
+                    break;
+                case "Schaf":
+                    angriff = true;
+                    break;
+                case "Mensch":
+                    angriff = false;
+                    break;
+                case "Zwerg":
+                    angriff = false;
+            }
+        }
+        return angriff;
     }
 
     /**
-     * Überschreibt doe Object-Methode in der Art, dass Einheit, Lebenspunlte und Initiative ausgegeben werden
+     * Überschreibt die Object-Methode in der Art, dass Einheit, Lebenspunkte und Initiative ausgegeben werden
      * @return  String
      */
     @Override
@@ -67,14 +106,18 @@ abstract class Einheit implements Comparable<Einheit> {
 
     /**
      * Ziel-Einheit wird angegriffen. Per default wird ein Schaden von 2 Lebenspunkten hinzugefügt.
-     * Der Schaden kann durch einen klassenspezifischen Parameter angriffsSchadensKorrektur angepasst werden.
+     * Der Schaden kann abhängig vom Ziel angepasst werden.
      * @param ziel  Einheit
      */
     void attackiere(Einheit ziel){
+            int schaden = 2;
+            if (this instanceof Fernkampf) schaden += 2;
+            if (this instanceof Gift) schaden += 2;
+
             if ( this.kannAngreifen(ziel) == true ){
                 System.out.println(this+ " greift "+ziel.toString()+ " an.");
                 try{
-                    ziel.werdeAngegriffen(2+angriffsSchadensKorrektur);
+                    ziel.werdeAngegriffen(schaden);
                 } catch (Exception SchafException){
                     System.out.println(SchafException);
                 }
@@ -84,15 +127,12 @@ abstract class Einheit implements Comparable<Einheit> {
     /**
      * Die Einheit wird angegriffen und deren Lebenspunkte reduziert.
      * Die Reduktion der Lebenspunkte kann aufgrund der eigenen Ausstattung angepasst werden.
-     * Hierbei wird das Klassenattribut zielSchadensKorrekturFaktor (double) verwendet:
-     *   z.B.  1=Schadenspunkte bleiben unverändert, 0.5 reduktion auf die Hälfte usw.
      * @param schaden int
      */
     void werdeAngegriffen(int schaden) throws Exception {
-        int verbleibendeLebenspunkte = this.lebensPunkte-(int)(zielSchadensKorrekturFaktor*schaden);
-        if (verbleibendeLebenspunkte <= 0){
-            this.lebensPunkte = 0;
-        }
+        if (this instanceof SchwereRuestung) schaden /= 2;
+        int verbleibendeLebenspunkte = this.lebensPunkte-schaden;
+        if (verbleibendeLebenspunkte <= 0) this.lebensPunkte = 0;
         this.lebensPunkte = verbleibendeLebenspunkte;
     }
 }
