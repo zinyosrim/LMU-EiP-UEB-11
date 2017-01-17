@@ -117,10 +117,11 @@ abstract class Einheit implements Comparable<Einheit> {
             if ( this.kannAngreifen(ziel) == true ){
                 System.out.println(this+ " greift "+ziel.toString()+ " an.");
                 try{
-                    ziel.werdeAngegriffen(schaden);
-                } catch (Exception SchafException){
-                    System.out.println(SchafException);
-                }
+                    if (ziel instanceof Schaf){throw new SchafException("Schaf versucht määäähend zu fliehen....");}
+                } catch(SchafException e){System.out.println(e.getMessage());}
+
+                ziel.werdeAngegriffen(schaden);
+
             }
     }
 
@@ -129,7 +130,7 @@ abstract class Einheit implements Comparable<Einheit> {
      * Die Reduktion der Lebenspunkte kann aufgrund der eigenen Ausstattung angepasst werden.
      * @param schaden int
      */
-    void werdeAngegriffen(int schaden) throws Exception {
+    void werdeAngegriffen(int schaden){
         if (this instanceof SchwereRuestung) schaden /= 2;
         int verbleibendeLebenspunkte = this.lebensPunkte-schaden;
         if (verbleibendeLebenspunkte <= 0) this.lebensPunkte = 0;

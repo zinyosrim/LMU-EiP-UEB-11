@@ -82,7 +82,7 @@ public class Kampf {
 	
 	// simuliert den gesamten Kampf und endet erst, wenn eine Fraktion gewonnen hat. 
 	// Die Rückgabe ist die siegreiche Einheit, die den letzten Schlag vollführt hat.
-	public Einheit kaempfen(){
+	public Einheit kaempfen()  {
 
 		int angreiferPosition = 0;
 		
@@ -94,11 +94,7 @@ public class Kampf {
 				if(ziel == angreifer) // in diesem Fall wurde kein gueltiges Ziel gefunden => Kampfende
 					return angreifer;
 				if(ziel != null){
-					try {
 						angreifer.attackiere(ziel);
-					} catch (Exception e) {
-						System.out.println("Schaf läuft herum und sagt määh...");
-					}
 				}
 
 			}
