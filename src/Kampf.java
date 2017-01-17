@@ -1,4 +1,7 @@
+import javafx.scene.SnapshotParametersBuilder;
+
 import java.util.Random;
+import java.util.Arrays;
 
 public class Kampf {
 	
@@ -34,6 +37,8 @@ public class Kampf {
 				default: einheiten[i] = new Schaf(); break;
 			}
 		}
+		Arrays.sort(this.einheiten);
+
 	}
 	
 	public boolean allesSchafe() {
@@ -55,23 +60,24 @@ public class Kampf {
 		return str;
 	}
 
-	private int getNaechstePosition(int i){
-		return (i+1)%laenge;
-	}
+	/**
+	 * findet nächstes angreifbares Ziel
+	 * @param 	angreiferPosition
+	 * @return	Ziel (Einheit)
+	 */
+	private Einheit findeNaechstesZiel(int angreiferPosition) {
 
+		int zielPosition = (angreiferPosition + 1) % laenge; // initialisiere Ziel mit nächster Einheit nach Round Robin
+		boolean zielGefunden = false;
 
-
-	private int findeNaechstesZiel(int angreiferPosition) {
-		// zeilPosition wird mit dem nächsten Element initialisiert.
-		// wenn angreiferPosition das letzte Element ist, dann ist die nächste Position die Erste.
-		int zielPosition = (angreiferPosition + 1)%laenge;
-		// solange Ziel kein Angriffsziel ist oder alle Element durchsucht worden sind ...
-		while ( ( einheiten[angreiferPosition].compareTo(einheiten[zielPosition])  > -1 ) ||
-				( angreiferPosition != zielPosition ) ){
-			// ... gehe zur nächsten zielPosition
-			zielPosition = (angreiferPosition + 1)%laenge;
+		while (  !zielGefunden   && angreiferPosition != zielPosition ){
+			// wenn Ziel angreifbar und Ziel != Angreifer ....
+			if ( (einheiten[angreiferPosition].kannAngreifen(einheiten[zielPosition]) == true) && einheiten[zielPosition].lebtNoch() ) {
+				return einheiten[zielPosition]; // angreifbares Ziel gefunden
+			}
+			zielPosition = (zielPosition + 1) % laenge; // gehe zur nächsten Einheit nach Round Robin
 		}
-		return zielPosition;
+		return einheiten[angreiferPosition]; // kein angreifbares Ziel gefunden
 	}
 	
 	// simuliert den gesamten Kampf und endet erst, wenn eine Fraktion gewonnen hat. 
@@ -87,8 +93,14 @@ public class Kampf {
 
 				if(ziel == angreifer) // in diesem Fall wurde kein gueltiges Ziel gefunden => Kampfende
 					return angreifer;
-				if(ziel != null)
-					angreifer.attackiere(ziel);
+				if(ziel != null){
+					try {
+						angreifer.attackiere(ziel);
+					} catch (Exception e) {
+						System.out.println("Schaf läuft herum und sagt määh...");
+					}
+				}
+
 			}
 			angreiferPosition++;
 			if(angreiferPosition >= laenge)
