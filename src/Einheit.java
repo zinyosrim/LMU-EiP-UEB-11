@@ -100,8 +100,7 @@ abstract class Einheit implements Comparable<Einheit> {
      * @return  boolean
      */
     boolean lebtNoch(){
-        if (this.lebensPunkte > 0) return true;
-        return false;
+        return this.lebensPunkte > 0;
     }
 
     /**
